@@ -1,0 +1,30 @@
+<!--Custom markup.
+If the plugin defines a component then it should set v-plugin and data-plugin-callback to the class of the component
+
+If the plugin posts data then it should define the v-input class.
+That will cause its validate and prepareSubmit methods in the component to be called
+
+If the plugin has events it publishes then the erb :"components/event" needs to be invoked to
+hookup the event handling markup
+
+Any additional data you want to pass to your component javascript should be setup here as data attributes.
+-->
+<!--<div id="auth0" class='v-plugin v-input' data-plugin-callback="Auth0Component"-->
+<!--        <%#= erb :"components/event", :locals => {comp: comp, events: comp.events, parent_id: comp.id} %>/>-->
+
+<form class="" method="post" action="auth/auth0">
+  <input id="<%= comp.id %>"
+         class="v-button v-button--button mdc-button"
+         type="submit"
+         value="<%= comp.label %>"
+         <%= 'disabled ' if comp.disabled %>
+         onclick="document.getElementById('authenticity_token').value = getAuthToken();"/>
+  <input id="authenticity_token" type="hidden" name="authenticity_token" value=""/>
+</form>
+
+<script>
+        function getAuthToken() {
+                var token = document.getElementsByName('csrf-token')[0].content
+                return token;
+        }
+</script>
