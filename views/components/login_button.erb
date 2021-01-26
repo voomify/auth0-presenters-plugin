@@ -12,7 +12,7 @@ Any additional data you want to pass to your component javascript should be setu
 <!--<div id="auth0" class='v-plugin v-input' data-plugin-callback="Auth0Component"-->
 <!--        <%#= erb :"components/event", :locals => {comp: comp, events: comp.events, parent_id: comp.id} %>/>-->
 
-<form class="" method="post" action="auth/auth0">
+<form class="" method="post" action="<%= comp.action %>">
   <input id="<%= comp.id %>"
          class="v-button v-button--button mdc-button"
          type="submit"

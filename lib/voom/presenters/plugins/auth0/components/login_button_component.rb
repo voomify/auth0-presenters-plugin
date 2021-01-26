@@ -5,9 +5,10 @@ module Voom
     module Plugins
       module Auth0
         class LoginButtonComponent < DSL::Components::EventBase
-          attr_accessor :label, :disabled
+          attr_accessor :action, :label, :disabled
 
-          def initialize(**attribs, &block)
+          def initialize(action:, **attribs, &block)
+            @action = action
             @label = attribs.delete(:label)
             @disabled = attribs.delete(:disabled) {false}
             super(type: :login_button, **attribs, &block)
